@@ -1,58 +1,3 @@
-$(document).ready(function () {
-  processLogin();
-  processSignup();
-});
-
-function processLogin() {
-  $("#login").submit(function() {
-    var data = {};
-    $("#login input").each(function(k,v) {
-      if(!$(v).val().length) {
-        $('.alert span').html('Please enter <strong>' + $(v).attr('name') + '</strong> !');
-        $('.alert').removeClass('hidden');
-        return false;
-      }
-      data[$(v).attr('name')] = $(v).val();
-    });
-    $.ajax({
-      url : 'php/process_login.php',
-      type : 'post',
-      data : data,
-      dataType : 'json',
-      success : function(r) {
-        console.log(r);
-        switch(r.error) {
-          case 'empty' : 
-            $('.alert span').html('Please fill all the credentials !');
-            $('.alert').removeClass('hidden');
-            break;
-          case 'not_found' :
-            $('.alert span').html('No such user found! Try signing up.');
-            $('.alert').removeClass('hidden');
-            $("form#signup input[name=email]").val($("form#login input[name=email]").val());
-            $("form#signup input[name=email]").focus();
-            break;
-          case 'incorrect' :
-            $('.alert span').html('Incorrect Password!');
-            $('.alert').removeClass('hidden');
-            $('.alert').removeClass('alert-warning');
-            $('.alert').addClass('alert-danger');
-            break;
-          case 'none' :
-            $('.alert span').html('<img src="img/loading.gif"> <strong>Welcome</strong>, you are being logged in');
-            $('.alert').removeClass('hidden');
-            $('.alert').removeClass('alert-warning');
-            $('.alert').removeClass('alert-danger');
-            $('.alert').addClass('alert-success');
-            window.location="";
-            break;
-        }
-      }    
-    });
-    return false;
-  });
-}
-
 function processSignup() {
   $("#signup").submit(function() {
     var data = {};
@@ -68,6 +13,7 @@ function processSignup() {
     });
     if(isEmpty) return false;
     
+    // No validation for phone number format
     if($("#signup input[name=password]").val() != $("#signup input[name=password2]").val()) {
       $('.alert span').html('Password don\'t match!');
       $('.alert').removeClass('hidden');
