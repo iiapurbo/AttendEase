@@ -87,9 +87,9 @@ function verify($type,$input) {
  Returns -> Returns true and false
 */
   $reEmail = '/^([\S]+)@([\S]+)\.([\S]+)$/';
-  $rePhone = '/^[0-9]{10}$/';
+  $rePhone = '/^[0-9]+$/';
   $reCode  = '/^([a-zA-Z]{3})\-([0-9]{3})$/';
-  $reRoll  = '/^([0-9]{3})\/([a-zA-z]{2})\/([0-9]{2})$/';
+  $reRoll  = '/^[0-9]{10}$/';
   $reName  = '/^[a-zA-Z \']+$/';
   $reNum  = '/^[0-9]+$/';
   $m;
