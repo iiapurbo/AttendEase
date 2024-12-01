@@ -1,11 +1,8 @@
-function verify(type,input) {
-  var regexes = {'email':/^([\S]+)@([\S]+)\.([\S]+)$/,'phone':/^[0-9]{10}$/,'code':/^([a-zA-Z]{3})\-([0-9]{3})$/,'roll':/^([0-9]{3})\/([a-zA-z]{2})\/([0-9]{2})$/,'name':/^[a-zA-Z \']+$/,'num':/^[0-9]+$/};
-  return ((input.match(regexes[type]) == null)? false:true);
-}
 $(document).ready(function () {
   processLogin();
   processSignup();
 });
+
 function processLogin() {
   $("#login").submit(function() {
     var data = {};
@@ -55,6 +52,7 @@ function processLogin() {
     return false;
   });
 }
+
 function processSignup() {
   $("#signup").submit(function() {
     var data = {};
@@ -76,21 +74,6 @@ function processSignup() {
     }
     if($("#signup input[name=password]").val().length < 6) {
       $('.alert span').html('Password is smaller than 6 characters!');
-      $('.alert').removeClass('hidden');
-      return false;
-    }
-    if(!verify('phone',data.phone)) {
-      $('.alert span').html('Invalid Phone');  
-      $('.alert').removeClass('hidden');
-      return false;
-    }
-    if(!verify('email',data.email)) {
-      $('.alert span').html('Invalid Email');  
-      $('.alert').removeClass('hidden');
-      return false;
-    }
-    if(!verify('name',data.name)) {
-      $('.alert span').html('Invalid Name');  
       $('.alert').removeClass('hidden');
       return false;
     }
