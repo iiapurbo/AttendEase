@@ -39,7 +39,7 @@ function processLogin() {
             $('.alert').addClass('alert-danger');
             break;
           case 'none' :
-            $('.alert span').html('<img src="img/loading.gif"> <Strong>Welcome</strong>, you are being logged in ');
+            $('.alert span').html('<img src="img/loading.gif"> <strong>Welcome</strong>, you are being logged in');
             $('.alert').removeClass('hidden');
             $('.alert').removeClass('alert-warning');
             $('.alert').removeClass('alert-danger');
@@ -67,6 +67,7 @@ function processSignup() {
       data[$(v).attr('name')] = $(v).val();
     });
     if(isEmpty) return false;
+    
     if($("#signup input[name=password]").val() != $("#signup input[name=password2]").val()) {
       $('.alert span').html('Password don\'t match!');
       $('.alert').removeClass('hidden');
@@ -77,6 +78,7 @@ function processSignup() {
       $('.alert').removeClass('hidden');
       return false;
     }
+    
     $.ajax({
       url : 'php/process_signup.php',
       type : 'post',
@@ -85,48 +87,36 @@ function processSignup() {
       success : function(r) {
         console.log(r);
         switch(r.error) {
-          case 'email' :
-            $('.alert span').html('Invalid Email');  
-            $('.alert').removeClass('hidden');
-          break;
-          case 'phone' :
-            $('.alert span').html('Invalid Phone');  
-            $('.alert').removeClass('hidden');
-          break;
-          case 'name' :
-            $('.alert span').html('Invalid Name');  
-            $('.alert').removeClass('hidden');
-          break;
           case 'empty' : 
-            $('.alert span').html('Fill all the details');  
+            $('.alert span').html('Fill all the details');
             $('.alert').removeClass('hidden');
-          break;
+            break;
           case 'mismatch' : 
-            $('.alert span').html('Password don\'t match');  
+            $('.alert span').html('Password don\'t match');
             $('.alert').removeClass('hidden');
-          break;
+            break;
           case 'small' : 
-            $('.alert span').html('Password is too small! It should be at least 6 characters long');  
+            $('.alert span').html('Password is too small! It should be at least 6 characters long');
             $('.alert').removeClass('hidden');
-          break;
+            break;
           case 'exists' : 
-            $('.alert span').html('There already exists an account with that email ID. Try logging in.');            
+            $('.alert span').html('There already exists an account with that email ID. Try logging in.');
             $('.alert').removeClass('hidden');
             $("form#login input[name=email]").val($("form#signup input[name=email]").val());
             $("form#login input[name=email]").focus();
-          break;
+            break;
           case 'db_error' : 
-            $('.alert span').html('We are facing troubles at our server side !');  
+            $('.alert span').html('We are facing troubles at our server side!');
             $('.alert').removeClass('hidden');
-          break;
+            break;
           case 'none' : 
-            $('.alert span').html('You have successfully signed up! Login using the same credentials now.');  
+            $('.alert span').html('You have successfully signed up! Login using the same credentials now.');
             $("form#login input[name=email]").val($("form#signup input[name=email]").val());
             $("form#login input[name=email]").focus();
             $('.alert').removeClass('hidden');
             $('.alert').removeClass('alert-warning');
             $('.alert').addClass('alert-success');
-          break;
+            break;
         }
       }    
     });
