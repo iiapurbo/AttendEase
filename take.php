@@ -8,7 +8,14 @@
 ?>
 <?php include 'php/node_class.php'; ?>
 <?php
-  
+  /*
+  login -> session mai save hoga kuch , which will identify the teacher
+  addClass -> we will get a link , which will have cN as an identifier of the class
+  we use these to find the 'object' of this particular class
+  then we show the list of students , with their attendance and stuff 
+  then we have javascript which will function on the buttons next to each student
+  then we have a save button
+  */
   $teacher_id = $_SESSION['teacher_id'];
   $classes = $_SESSION['classes'];
   $name = $_SESSION['name'];

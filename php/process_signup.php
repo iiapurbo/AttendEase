@@ -15,7 +15,12 @@ $email = strtolower(sqlReady($_POST['email']));
 $name = sqlReady($_POST['name']);
 $phone = sqlReady($_POST['phone']);
 
-/************* SEARCH ***********/
+/************* REGEX ************/
+if(verify(EMAIL,$email) === false) respond("error","email");
+if(verify(PHONE,$phone) === false) respond("error","phone");
+if(verify(NAME,$name) === false) respond("error","name");
+
+/************ SEARCH ***********/
 $con = connectTo();
 $exists = $con->query("select * from `attendance`.`teacher` where email = '$email'");
 if($exists && $con->affected_rows) {
