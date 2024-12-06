@@ -11,19 +11,14 @@ DEFINE('NAME',5);
 DEFINE('NUMBER',6);
 
 
+
 function connectTo() {
-/*
- Does -> Connects to data base
- Returns -> Connection object
-*/
+
   $con = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_DB);
   return $con;   
 }
 function sqlReady($input) {
-/*
- Takes -> Any string
- Returns -> Escapes the string
-*/
+
   $con = connectTo();
   $string = mysqli_real_escape_string($con,$input);
   $con->close();
@@ -31,10 +26,7 @@ function sqlReady($input) {
 }
 
 function hashPass($pass,$rounds = 9) {
-/*
- Takes -> Password
- Returns -> Hashes the password using blow-fish algorithm
-*/
+
   $salt = "";
   $i = -1;
   $saltChars = array_merge(range(0,9),range('a','z'),range('A','Z'));
@@ -43,24 +35,15 @@ function hashPass($pass,$rounds = 9) {
   return crypt($pass, sprintf('$2y$%02d$', $rounds) . $salt);
 }
 function verifyPass($input,$pass) {
-/*
- Takes -> 2 Password strings
- Returns -> true if matches false if doesn't
-*/
+
   return crypt($input,$pass) == $pass? true : false ;
 }
 function respond($as,$what) {
-/*
- Takes -> key and value
- Does -> Dies by printing json_encoded array having the key and value
-*/
+
   die(json_encode(array($as=>$what)));
 }
 function updateSession($email) {
-/*
- Takes -> email
- Does -> Updates the SESSION variable as per the email
-*/
+
   $con = connectTo();
   $exists = $con->query("select * from `attendance`.`teacher` where email = '$email'");
   $exists = $exists->fetch_assoc();
@@ -81,11 +64,7 @@ function updateSession($email) {
   session_write_close();
 }
 function verify($type,$input) {
-/*
- Takes -> Type of regex checker and the input
- Does -> Computes the regex 
- Returns -> Returns true and false
-*/
+
   $reEmail = '/^([\S]+)@([\S]+)\.([\S]+)$/';
   $rePhone = '/^[0-9]+$/';
   $reCode  = '/^([a-zA-Z]{3})\-([0-9]{3})$/';

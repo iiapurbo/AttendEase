@@ -19,15 +19,11 @@
   $class_id = $_GET['cN'];
   
   if(!in_array($class_id,$classes)) die( "No such record." );
-  // Assuming that we have validated and thrown errors if any , we proceed 
-  // By finding the particular object we are talking about 
   
-  // Connecting to the database 
   $classNode = new Node;
   $node = $classNode->retrieveObjecti($class_id,$teacher_id) or die("No such record");
 
-  // Intimating the teacher about Number of Classes , and student list
-  // A foreach loop which will go on till all students are covered 
+  
   $records = $node->getRecords();
 ?>
 <html>
@@ -71,7 +67,7 @@
 			<li><a href="logout.php">Logout</a></li>
           
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </nav></br></br></br></br>
     

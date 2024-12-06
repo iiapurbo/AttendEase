@@ -11,11 +11,11 @@
   <script src="js/highcharts-exporting.js"></script>
   <script src="js/jquery.knob.js"></script>
   <script src="js/student.js"></script>
-  <!-- Custom styles for this template -->
+  
     <link href="navbar-fixed-top.css" rel="stylesheet">
  </head>
  <body>
-   <!-- Fixed navbar -->
+  
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -65,11 +65,10 @@
     <button class="btn btn-primary">Get Results</button>
   </form>
   </div>
-  </div><!-- /.container -->
-   <!-- FOOTER -->
+  </div>
       <footer style="background:; height:;">
         <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2017 ProjectWorlds, Inc. &middot;  developed by  <a href="https://facebook.com/yugesh.verma.35">Yugesh Verma </a><a href="http://projectworlds.in">Privacy</a> &middot; <a href="http://projectworlds.in">Terms</a></p>
+        
       </footer>
 
     

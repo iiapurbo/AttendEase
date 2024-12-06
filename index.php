@@ -17,12 +17,12 @@
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/login.js"></script>
-   <!-- Custom styles for this template -->
+   
     <link href="navbar-fixed-top.css" rel="stylesheet">
  </head>
  <body>
  
-    <!-- Fixed navbar -->
+    
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -105,13 +105,13 @@
       </tbody>
     </table>
   </div>
-     <!-- FOOTER -->
+    
       <footer style="background:; height:120%;">
         <p class="pull-right"><a href="#">Back to top</a></p>
         <p>&copy;       </p>
       </footer>
 
-    </div><!-- /.container -->
+    </div>
 
  </body>
 </html>

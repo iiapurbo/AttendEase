@@ -18,11 +18,11 @@
   <script src="js/highcharts.js"></script>
   <script src="js/highcharts-exporting.js"></script>
   <script src="js/statistics.js"></script>
-  <!-- Custom styles for this template -->
+  
     <link href="navbar-fixed-top.css" rel="stylesheet">
  </head>
  <body>
-   <!-- Fixed navbar -->
+   
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">

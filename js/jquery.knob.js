@@ -1,28 +1,11 @@
-/*!jQuery Knob*/
-/**
- * Downward compatible, touchable dial
- *
- * Version: 1.2.0 (15/07/2012)
- * Requires: jQuery v1.7+
- *
- * Copyright (c) 2012 Anthony Terrien
- * Under MIT and GPL licenses:
- *  http://www.opensource.org/licenses/mit-license.php
- *  http://www.gnu.org/licenses/gpl.html
- *
- * Thanks to vor, eskimoblood, spiffistan, FabrizioC
- */
+
 (function($) {
 
-    /**
-     * Kontrol library
-     */
+    
     "use strict";
 
-    /**
-     * Definition of globals and core
-     */
-    var k = {}, // kontrol
+    
+    var k = {}, 
         max = Math.max,
         min = Math.min;
 
@@ -32,44 +15,35 @@
         return e.originalEvent.touches.length - 1;
     };
 
-    /**
-     * Kontrol Object
-     *
-     * Definition of an abstract UI control
-     *
-     * Each concrete component must call this one.
-     * <code>
-     * k.o.call(this);
-     * </code>
-     */
+    
     k.o = function () {
         var s = this;
 
-        this.o = null; // array of options
-        this.$ = null; // jQuery wrapped element
-        this.i = null; // mixed HTMLInputElement or array of HTMLInputElement
-        this.g = null; // deprecated 2D graphics context for 'pre-rendering'
-        this.v = null; // value ; mixed array or integer
-        this.cv = null; // change value ; not commited value
-        this.x = 0; // canvas x position
-        this.y = 0; // canvas y position
-        this.w = 0; // canvas width
-        this.h = 0; // canvas height
-        this.$c = null; // jQuery canvas element
-        this.c = null; // rendered canvas context
-        this.t = 0; // touches index
+        this.o = null; 
+        this.$ = null; 
+        this.i = null; 
+        this.g = null; 
+        this.v = null; 
+        this.cv = null; 
+        this.x = 0; 
+        this.y = 0; 
+        this.w = 0; 
+        this.h = 0; 
+        this.$c = null; 
+        this.c = null; 
+        this.t = 0; 
         this.isInit = false;
-        this.fgColor = null; // main color
-        this.pColor = null; // previous color
-        this.dH = null; // draw hook
-        this.cH = null; // change hook
-        this.eH = null; // cancel hook
-        this.rH = null; // release hook
-        this.scale = 1; // scale factor
+        this.fgColor = null; 
+        this.pColor = null; 
+        this.dH = null; 
+        this.cH = null; 
+        this.eH = null; 
+        this.rH = null; 
+        this.scale = 1; 
         this.relative = false;
         this.relativeWidth = false;
         this.relativeHeight = false;
-        this.$div = null; // component div
+        this.$div = null; 
 
         this.run = function () {
             var cf = function (e, conf) {
@@ -88,7 +62,7 @@
             this.extend();
             this.o = $.extend(
                 {
-                    // Config
+                    
                     min : this.$.data('min') || 0,
                     max : this.$.data('max') || 100,
                     stopper : true,
@@ -115,24 +89,24 @@
                     inline : false,
                     step : this.$.data('step') || 1,
 
-                    // Hooks
-                    draw : null, // function () {}
-                    change : null, // function (value) {}
-                    cancel : null, // function () {}
-                    release : null, // function (value) {}
-                    error : null // function () {}
+                    
+                    draw : null, 
+                    change : null, 
+                    cancel : null, 
+                    release : null, 
+                    error : null 
                 }, this.o
             );
 
-            // finalize options
+            
             if(!this.o.inputColor) {
                 this.o.inputColor = this.o.fgColor;
             }
 
-            // routing value
+           
             if(this.$.is('fieldset')) {
 
-                // fieldset = array of integer
+                
                 this.v = {};
                 this.i = this.$.find('input')
                 this.i.each(function(k) {
@@ -153,7 +127,7 @@
 
             } else {
 
-                // input = integer
+               
                 this.i = this.$;
                 this.v = this.$.val();
                 (this.v == '') && (this.v = this.o.min);
@@ -169,7 +143,7 @@
 
             (!this.o.displayInput) && this.$.hide();
 
-            // adds needed DOM elements (canvas, div)
+            
             this.$c = $(document.createElement('canvas'));
             if (typeof G_vmlCanvasManager !== 'undefined') {
               G_vmlCanvasManager.initElement(this.$c[0]);
@@ -180,7 +154,7 @@
                 return;
             }
 
-            // hdpi support
+           
             this.scale = (window.devicePixelRatio || 1) /
                         (
                             this.c.webkitBackingStorePixelRatio ||
@@ -190,7 +164,7 @@
                             this.c.backingStorePixelRatio || 1
                         );
 
-            // detects relative width / height
+            
             this.relativeWidth = ((this.o.width % 1 !== 0)
                                     && this.o.width.indexOf('%'));
             this.relativeHeight = ((this.o.height % 1 !== 0)
@@ -198,7 +172,7 @@
 
             this.relative = (this.relativeWidth || this.relativeHeight);
 
-            // wraps all elements in a div
+           
             this.$div = $('<div style="'
                         + (this.o.inline ? 'display:inline;' : '')
                         + '"></div>');
@@ -206,10 +180,10 @@
             this.$.wrap(this.$div).before(this.$c);
             this.$div = this.$.parent();
 
-            // computes size and carves the component
+            
             this._carve();
 
-            // prepares props for transaction
+            
             if (this.v instanceof Object) {
                 this.cv = {};
                 this.copy(this.v, this.cv);
@@ -217,13 +191,13 @@
                 this.cv = this.v;
             }
 
-            // binds configure event
+            
             this.$
                 .bind("configure", cf)
                 .parent()
                 .bind("configure", cf);
 
-            // finalize init
+            
             this._listen()
                 ._configure()
                 ._xy()

@@ -16,11 +16,11 @@
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/profile.js"></script>
-  <!-- Custom styles for this template -->
+  
     <link href="navbar-fixed-top.css" rel="stylesheet">
  </head>
  <body>
-   <!-- Fixed navbar -->
+  
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -43,7 +43,7 @@
 			<li><a href="logout.php">Logout</a></li>
           
           </ul>
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </nav></br></br></br></br>
   
