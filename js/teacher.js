@@ -1,5 +1,5 @@
 function verify(type,input) {
-  var regexes = {'email':/^([\S]+)@([\S]+)\.([\S]+)$/,'phone':/^[0-9]{10}$/,'code':/^([a-zA-Z]{3})\-([0-9]{3})$/,'roll':/^([0-9]{3})\/([a-zA-z]{2})\/([0-9]{2})$/,'name':/^[a-zA-Z \']+$/,'num':/^[0-9]+$/};
+  var regexes = {'email':/^([\S]+)@([\S]+)\.([\S]+)$/,'phone':/^[0-9]+$/,'code':/^([a-zA-Z]{3})\-([0-9]{3})$/,'roll':/^[0-9]{10}$/,'name':/^[a-zA-Z \']+$/,'num':/^[0-9]+$/};
   return ((input.match(regexes[type]) == null)? false:true);
 }
 $(document).ready(function() {
